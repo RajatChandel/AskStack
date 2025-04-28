@@ -1,4 +1,4 @@
-package com.rchandel.askstack.ui.theme
+package com.rchandel.askstack.presentation.theme
 
 import android.app.Activity
 import android.os.Build

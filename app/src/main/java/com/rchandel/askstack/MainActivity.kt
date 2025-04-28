@@ -19,7 +19,7 @@ import com.rchandel.askstack.core.components.InternetBanner
 import com.rchandel.askstack.core.network.ConnectivityObserver
 import com.rchandel.askstack.core.network.NetworkConnectivityObserver
 import com.rchandel.askstack.presentation.AskStackApp
-import com.rchandel.askstack.ui.theme.AskStackTheme
+import com.rchandel.askstack.presentation.theme.AskStackTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

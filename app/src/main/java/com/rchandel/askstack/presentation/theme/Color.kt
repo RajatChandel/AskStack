@@ -1,4 +1,4 @@
-package com.rchandel.askstack.ui.theme
+package com.rchandel.askstack.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
