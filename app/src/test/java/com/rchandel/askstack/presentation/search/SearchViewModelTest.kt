@@ -70,7 +70,7 @@ class SearchViewModelTest {
         val question = Question("title1", "Author 1", 123123L, "link 1", "body1")
 
         viewModel.onEvent(SearchEvent.OnQuestionClicked(question))
-        advanceUntilIdle() // Ensure coroutine completes
+        advanceUntilIdle()
 
         viewModel.selectedQuestion.test {
             assertEquals(question, awaitItem())

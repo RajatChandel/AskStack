@@ -33,7 +33,7 @@ class SearchQuestionsUseCaseTest {
         )
         coEvery { repository.searchQuestions("kotlin") } returns NetworkResult.Success(mockQuestions)
         
-        val result = useCase("kotlin")
+        val result = useCase("Stryker")
 
         assertTrue(result is NetworkResult.Success)
         assertEquals(mockQuestions, (result as NetworkResult.Success).data)
@@ -42,9 +42,9 @@ class SearchQuestionsUseCaseTest {
     @Test
     fun `when repository returns error, use case should return error`() = runTest {
         val errorMessage = "Network Error"
-        coEvery { repository.searchQuestions("compose") } returns NetworkResult.Error(errorMessage)
+        coEvery { repository.searchQuestions("Stryker") } returns NetworkResult.Error(errorMessage)
 
-        val result = useCase("compose")
+        val result = useCase("Stryker")
 
         assertTrue(result is NetworkResult.Error)
         assertEquals(errorMessage, (result as NetworkResult.Error).message)
