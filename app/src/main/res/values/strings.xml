@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Ask Stack</string>
+    <string name="online">Online</string>
+    <string name="offline">Offline</string>
+    <string name="back_button">Back button</string>
+    <string name="description_not_available">Description not available</string>
+    <string name="search_questions">Search questions...</string>
 </resources>

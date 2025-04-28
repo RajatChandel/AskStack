@@ -10,12 +10,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.rchandel.askstack.R
 
 @Composable
 fun InternetBanner(isInternetAvailable: Boolean) {
-    val color = if (isInternetAvailable) Color(0xFF4CAF50) else Color(0xFFF44336) // green / red
-    val text = if (isInternetAvailable) "Online" else "Offline"
+    val color = if (isInternetAvailable) Color(0xFF4CAF50) else Color(0xFFF44336)
+    val text = if (isInternetAvailable) stringResource(R.string.online) else stringResource(R.string.offline)
 
     Box(
         modifier = Modifier

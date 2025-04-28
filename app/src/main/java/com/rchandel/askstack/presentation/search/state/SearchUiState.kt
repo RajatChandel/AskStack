@@ -7,5 +7,6 @@ data class SearchUiState(
     val isLoading: Boolean = false,
     val error: String? = null,
     val questions: List<Question> = emptyList(),
-    val message: String? = null // for "One more character required" etc
+    val message: String? = null,
+    var buttonEnabled : Boolean = false
 )

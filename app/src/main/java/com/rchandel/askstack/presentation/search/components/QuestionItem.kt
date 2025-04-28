@@ -13,7 +13,9 @@ import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
+import com.rchandel.askstack.R
 import com.rchandel.askstack.core.util.formatTimestamp
 import com.rchandel.askstack.domain.model.Question
 
@@ -22,18 +24,18 @@ fun QuestionItem(question: Question, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 4.dp)
+            .padding(horizontal = dimensionResource(id = R.dimen.spacing_small))
             .clickable { onClick() },
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = dimensionResource(id = R.dimen.spacing_small))
     ) {
-        Column(modifier = Modifier.padding(12.dp)) {
+        Column(modifier = Modifier.padding(dimensionResource(id = R.dimen.spacing_s_large))) {
             Text(
                 text = question.title,
                 style = MaterialTheme.typography.titleMedium,
                 color = colorScheme.primary
             )
 
-            Spacer(modifier = Modifier.height(6.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_s_medium)))
 
             Text(
                 text = "Author: ${question.authorName}",
@@ -45,7 +47,7 @@ fun QuestionItem(question: Question, onClick: () -> Unit) {
                 style = MaterialTheme.typography.bodySmall
             )
 
-            Spacer(modifier = Modifier.height(6.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_s_medium)))
 
             Text(
                 text = question.link,

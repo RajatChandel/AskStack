@@ -10,5 +10,6 @@ data class QuestionItem(
     @SerializedName("title") val title: String,
     @SerializedName("owner") val owner: OwnerDto,
     @SerializedName("creation_date") val creationDate: Long,
-    @SerializedName("link") val link: String
+    @SerializedName("link") val link: String,
+    @SerializedName("body") val body: String?
 )

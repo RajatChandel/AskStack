@@ -23,35 +23,22 @@ class SearchViewModel @Inject constructor(
     private val connectivityObserver: ConnectivityObserver
 ) : ViewModel() {
 
-    private val _isInternetAvailable = MutableStateFlow(true)
-    val isInternetAvailable: StateFlow<Boolean> = _isInternetAvailable
-
     private val _uiState = MutableStateFlow(SearchUiState())
     val uiState: StateFlow<SearchUiState> = _uiState
     private val _selectedQuestion = MutableStateFlow<Question?>(null)
     val selectedQuestion = _selectedQuestion.asStateFlow()
 
-
-    init {
-        observeConnectivity()
-    }
-
-    private fun observeConnectivity() {
-        viewModelScope.launch {
-            connectivityObserver.observe()
-                .map { status ->
-                    status == ConnectivityObserver.Status.Available
-                }
-                .collect { available ->
-                    _isInternetAvailable.value = available
-                }
-        }
-    }
-
     fun onEvent(event: SearchEvent) {
         when (event) {
             is SearchEvent.OnQueryChanged -> {
-                _uiState.update { it.copy(query = event.query, message = getMessageForQuery(event.query)) }
+                _uiState.update {
+                    it.copy(
+                        query = event.query,
+                        questions = it.questions,
+                        buttonEnabled = enableButton(event.query),
+                        message = getMessageForQuery(event.query)
+                    )
+                }
             }
 
             is SearchEvent.OnSearch -> {
@@ -70,6 +57,10 @@ class SearchViewModel @Inject constructor(
         _selectedQuestion.value = null
     }
 
+    fun enableButton(query: String): Boolean {
+        return query.length >= 3
+    }
+
     private fun searchQuestions() {
         val query = _uiState.value.query
         if (query.length < 3) return
@@ -79,11 +70,25 @@ class SearchViewModel @Inject constructor(
 
             when (val result = searchQuestionsUseCase(query)) {
                 is NetworkResult.Success -> {
-                    _uiState.update { it.copy(isLoading = false, questions = result.data, error = null) }
+                    _uiState.update {
+                        it.copy(
+                            isLoading = false,
+                            questions = result.data,
+                            error = null
+                        )
+                    }
                 }
+
                 is NetworkResult.Error -> {
-                    _uiState.update { it.copy(isLoading = false, error = result.message, questions = emptyList()) }
+                    _uiState.update {
+                        it.copy(
+                            isLoading = false,
+                            error = result.message,
+                            questions = emptyList()
+                        )
+                    }
                 }
+
                 is NetworkResult.Loading -> {
                     _uiState.update { it.copy(isLoading = true) }
                 }

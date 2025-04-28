@@ -8,6 +8,7 @@ fun QuestionItem.toDomain(): Question {
         title = title,
         authorName = owner.displayName,
         creationDate = creationDate,
-        link = link
+        link = link,
+        body = body
     )
 }
