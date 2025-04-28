@@ -26,7 +26,7 @@ class StackOverflowRepositoryImpl @Inject constructor(
                     Error("No data available")
                 }
             } else {
-                Error(response.message())
+                Error(response.message() ?: "An unknown error occurred")
             }
         } catch (e: Exception) {
             Error(e.localizedMessage ?: "An error occurred")

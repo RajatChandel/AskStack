@@ -80,6 +80,8 @@ dependencies {
     testImplementation(libs.junit)
     testImplementation(libs.mockito.core)
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
+    testImplementation(libs.turbine)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
